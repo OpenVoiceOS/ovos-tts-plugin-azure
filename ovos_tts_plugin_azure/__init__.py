@@ -23,10 +23,10 @@ from ovos_utils.log import LOG
 
 class AzureTTSPlugin(TTS):
 
-    def __init__(self, lang, config):
-        super(AzureTTSPlugin, self).__init__(lang, config,
-                                             AzureTTSValidator(self), 'wav')
-        self.config = config
+    def __init__(self, lang=None, config=None):
+        super().__init__(lang=lang, config=config, 
+                         validator=AzureTTSValidator(self), 
+                         audio_ext='wav')
         self.api_key = self.config.get("api_key")
         self.voice = self.config.get("voice", "en-US-JennyNeural")
         self.region = self.config.get("region", "westus")
