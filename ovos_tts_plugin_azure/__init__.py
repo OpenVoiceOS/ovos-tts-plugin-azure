@@ -13,19 +13,20 @@
 # limitations under the License.
 #
 
-from datetime import datetime, timedelta
 from xml.etree import ElementTree
 
 import requests
+from datetime import datetime, timedelta
 from ovos_plugin_manager.templates.tts import TTS, TTSValidator
+from ovos_utils import classproperty
 from ovos_utils.log import LOG
 
 
 class AzureTTSPlugin(TTS):
 
-    def __init__(self, lang=None, config=None):
-        super().__init__(lang=lang, config=config, 
-                         validator=AzureTTSValidator(self), 
+    def __init__(self, config=None):
+        super().__init__(config=config,
+                         validator=AzureTTSValidator(self),
                          audio_ext='wav')
         self.api_key = self.config.get("api_key")
         self.voice = self.config.get("voice", "en-US-JennyNeural")
@@ -33,10 +34,15 @@ class AzureTTSPlugin(TTS):
         self.access_token = None
         self.last_renew = None
 
-    '''
-    The TTS endpoint requires an access token. This method exchanges your
-    subscription key for an access token that is valid for ten minutes.
-    '''
+    @classproperty
+    def available_languages(cls) -> set:
+        """Return languages supported by this TTS implementation in this state
+        This property should be overridden by the derived class to advertise
+        what languages that engine supports.
+        Returns:
+            set: supported languages
+        """
+        return set()
 
     def renew_token(self):
         now = datetime.now()
