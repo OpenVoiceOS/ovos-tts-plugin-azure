@@ -11,8 +11,8 @@ README = (HERE / "README.md").read_text()
 
 PLUGIN_ENTRY_POINT = 'ovos-tts-plugin-azure = ovos_tts_plugin_azure:AzureTTSPlugin'
 setup(
-    name='ovos-tts-plugin-azure',
-    version='0.1',
+    name='ovos_tts_plugin_azure',
+    version='0.1.1',
     description='A tts plugin for OpenVoiceOS, using Azure Cognitive Services',
     long_description=README,
     long_description_content_type="text/markdown",
