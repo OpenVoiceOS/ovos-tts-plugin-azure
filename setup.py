@@ -21,6 +21,7 @@ setup(
     author_email='private@private.org',
     license='Apache-2.0',
     packages=['ovos_tts_plugin_azure'],
+    extras_require={"test": ["ovoscope[tts]", "pytest"]},
     zip_safe=True,
     classifiers=[
         'Development Status :: 3 - Alpha',
