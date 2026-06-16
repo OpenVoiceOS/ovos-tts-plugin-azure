@@ -32,6 +32,6 @@ def test_tts_intelligibility():
         pytest.skip("requires Azure credentials")
     region = os.environ.get("AZURE_REGION", "westus")
     tts = AzureTTSPlugin({"lang": LANG, "api_key": api_key, "region": region})
-    report = score_tts_intelligibility(tts, PHRASES, lang=LANG, mode="playback")
+    report = score_tts_intelligibility(tts, PHRASES, lang=LANG, mode="direct")
     print("::TTS-INTELLIGIBILITY:: " + json.dumps(report.to_dict()))
     assert report.mean_wer <= float(os.environ.get("TTS_MAX_WER", "1.0"))
