@@ -8,6 +8,7 @@ Azure is a cloud engine: this test is skipped when no Azure Speech
 credentials are configured (runtime credential, not a packaging skip).
 """
 import os
+import json
 
 import pytest
 
@@ -32,5 +33,5 @@ def test_tts_intelligibility():
     region = os.environ.get("AZURE_REGION", "westus")
     tts = AzureTTSPlugin({"lang": LANG, "api_key": api_key, "region": region})
     report = score_tts_intelligibility(tts, PHRASES, lang=LANG, mode="playback")
-    print(f"::TTS-INTELLIGIBILITY:: {report.to_dict()}")
+    print("::TTS-INTELLIGIBILITY:: " + json.dumps(report.to_dict()))
     assert report.mean_wer <= float(os.environ.get("TTS_MAX_WER", "1.0"))
