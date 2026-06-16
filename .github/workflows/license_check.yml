@@ -9,3 +9,10 @@ jobs:
   license_check:
     uses: OpenVoiceOS/gh-automations/.github/workflows/license-check.yml@dev
     secrets: inherit
+    with:
+      # The built wheel reports its own name with underscores
+      # (ovos_tts_plugin_azure) and no license metadata, so pilosus tags the
+      # self-package Error. The central self-exclusion only canonicalises to the
+      # hyphenated form, so add the underscore form explicitly.
+      exclude_packages: >-
+        (?i:^ovos_tts_plugin_azure([=<>!~ @;].*)?$)
