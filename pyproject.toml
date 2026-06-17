@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ovos_tts_plugin_azure"
+dynamic = ["version"]
+description = "A tts plugin for OpenVoiceOS, using Azure Cognitive Services"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    { name = "Gwendal Roulleau", email = "private@private.org" },
+]
+keywords = ["mycroft", "plugin", "tts"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Text Processing :: Linguistic",
+    "Programming Language :: Python :: 3.7",
+]
+dependencies = [
+    "ovos-plugin-manager>=2.1.0,<3.0.0",
+    "requests",
+]
+
+[project.optional-dependencies]
+test = [
+    "ovoscope[tts]",
+    "pytest",
+]
+
+[project.urls]
+Homepage = "http://github.com/dalgwen/ovos-tts-plugin-azure"
+
+[project.entry-points."opm.tts"]
+"ovos-tts-plugin-azure" = "ovos_tts_plugin_azure:AzureTTSPlugin"
+
+[tool.setuptools.dynamic]
+version = { attr = "ovos_tts_plugin_azure.version.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ovos_tts_plugin_azure*"]
