@@ -9,6 +9,15 @@ HERE = pathlib.Path(__file__).parent
 # The text of the README file
 README = (HERE / "README.md").read_text()
 
+
+def required(requirements_file):
+    """Read a requirements file, stripping comments and blank lines."""
+    with open(HERE / requirements_file) as f:
+        requirements = f.read().splitlines()
+    return [pkg.strip() for pkg in requirements
+            if pkg.strip() and not pkg.strip().startswith("#")]
+
+
 PLUGIN_ENTRY_POINT = 'ovos-tts-plugin-azure = ovos_tts_plugin_azure:AzureTTSPlugin'
 setup(
     name='ovos_tts_plugin_azure',
@@ -21,6 +30,7 @@ setup(
     author_email='private@private.org',
     license='Apache-2.0',
     packages=['ovos_tts_plugin_azure'],
+    install_requires=required("requirements.txt"),
     extras_require={"test": ["ovoscope[tts]", "pytest"]},
     zip_safe=True,
     classifiers=[

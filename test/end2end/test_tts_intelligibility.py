@@ -16,6 +16,13 @@ from ovoscope.tts_intelligibility import score_tts_intelligibility
 
 from ovos_tts_plugin_azure import AzureTTSPlugin
 
+# Azure is a cloud engine and cannot synthesize without Speech credentials.
+# A missing credential is NOT a failure: skip cleanly when no key is set.
+pytestmark = pytest.mark.skipif(
+    not (os.environ.get("AZURE_SPEECH_KEY") or os.environ.get("AZURE_KEY")),
+    reason="AZURE_SPEECH_KEY not set — cloud engine, cannot synthesize in CI",
+)
+
 LANG = "en-US"
 PHRASES = [
     "hello world",
@@ -28,8 +35,6 @@ PHRASES = [
 
 def test_tts_intelligibility():
     api_key = os.environ.get("AZURE_SPEECH_KEY") or os.environ.get("AZURE_KEY")
-    if not api_key:
-        pytest.skip("requires Azure credentials")
     region = os.environ.get("AZURE_REGION", "westus")
     tts = AzureTTSPlugin({"lang": LANG, "api_key": api_key, "region": region})
     report = score_tts_intelligibility(tts, PHRASES, lang=LANG, mode="direct")
