@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.2a2](https://github.com/OpenVoiceOS/ovos-tts-plugin-azure/tree/0.1.2a2) (2026-08-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-tts-plugin-azure/compare/0.1.2a1...0.1.2a2)
+
+**Merged pull requests:**
+
+- docs: rewrite README in Simplified Technical English [\#9](https://github.com/OpenVoiceOS/ovos-tts-plugin-azure/pull/9) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [0.1.2a1](https://github.com/OpenVoiceOS/ovos-tts-plugin-azure/tree/0.1.2a1) (2026-06-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-tts-plugin-azure/compare/68c34b8aeb2c7a0008f2cecb86b595f8bfe9b3e5...0.1.2a1)
