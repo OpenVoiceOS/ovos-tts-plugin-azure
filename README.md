@@ -1,27 +1,34 @@
 ### ovos-tts-plugin-azure
 
-This TTS service for OpenVoiceOS requires a subscription to Microsoft Azure and the creation of a Speech resource (https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/overview#create-the-azure-resource)
+`ovos-tts-plugin-azure` is a text-to-speech plugin for OpenVoiceOS. It sends text to the [Azure Cognitive Services Speech API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/overview#create-the-azure-resource) and returns synthesized audio.
 
-The free plan is more than able to handle domestic usage (5 million character per month, or 0.5 million with neural tts).
-You can choose your voice here in the column "voice name" (https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech)
+To use this plugin, you need a Microsoft Azure subscription and a Speech resource. The free plan handles domestic usage: 5 million characters a month, or 0.5 million characters a month with neural voices. Pick a voice from the "Voice name" column in the [language support table](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech).
 
-Configuration parameters (only the api_key is mandatory, other are defaulted as in the following) :
+##### Installation
+
+```bash
+pip install ovos-tts-plugin-azure
+```
+
+##### Configuration
+
+The `api_key` field is mandatory. Other fields default as shown below.
 
 ```json
 "tts": {
     "module": "ovos-tts-plugin-azure",
     "ovos-tts-plugin-azure": {
         "api_key": "insert_your_key_here",
-        "voice": "en-US-JennyNeural",  # optional, default "en-US-Guy24kRUS"
-        "region": "westus" # optional, if your region is westus
+        "voice": "en-US-JennyNeural",
+        "region": "westus"
     }
 }
 ```
 
-##### Installation
+##### Related projects
 
-`pip install ovos-tts-plugin-azure`
+- [OpenVoiceOS](https://github.com/OpenVoiceOS) — the voice assistant platform this plugin serves.
 
-##### LICENSE :
+##### License
 
 Apache-2.0
